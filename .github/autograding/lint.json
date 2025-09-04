@@ -1,0 +1,12 @@
+{
+  "files": [
+    "classreport.py",
+    "subject.py",
+    "school_class.py",
+    "student.py",
+    "main.py",
+    "grade.py"
+  ],
+  "ignore": [],
+  "max": 20
+}
