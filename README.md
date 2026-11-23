@@ -1,7 +1,8 @@
-# M450 LU11.A01 - Schulverwaltung
+# M450 LU11.A02 - Schulverwaltung
 
-Entwickeln Sie die Applikation als Gruppe nach dem Prinzip des Test Driven
-Developments.
+Entwickeln Sie die Schulverwaltung als Gruppe testgetrieben (Test Driven
+Development). Jede Person entwickelt eine Klasse und ersetzt die Klassen der
+anderen in den Tests durch Mocks.
 
 Wiki: <https://wiki.bzz.ch/modul/m450/learningunits/lu11/aufgaben/school>
 (dort ist auch das UML-Klassendiagramm)
@@ -12,43 +13,50 @@ Wiki: <https://wiki.bzz.ch/modul/m450/learningunits/lu11/aufgaben/school>
 `Subject` und `Grade` zusammenspielen sollen. Die Klassen selbst sind nur als
 leere Hüllen vorhanden, die Testmodule `test_*.py` sind leer.
 
-Beim Anlegen des Repositorys werden die Issues aus der Vorlage übernommen.
-Sie zeigen, welche Unittests und Funktionen bereits geplant sind.
+Die Klasse `StudentReport` aus dem Klassendiagramm heisst in diesem Repository
+`ClassReport` (Datei `classreport.py`). Verwenden Sie diesen Namen.
 
 ## Vorgehen
 
 1. Aufgabe annehmen und einer offenen Gruppe beitreten oder eine neue Gruppe
    eröffnen. Neue Gruppen beginnen **zwingend** mit dem Klassennamen, z. B.
-   `im23a-gruppenname`.
+   `ia24a-gruppenname`.
 2. Das gemeinsame Repository klonen.
-3. Zu Beginn schreibt jedes Gruppenmitglied die Unittests zu mindestens einer
-   Funktion. Danach realisieren Sie entweder eine Funktion, zu der die Tests
-   schon vorhanden sind, oder schreiben die Tests zu einer weiteren Funktion.
+3. Klassen verteilen und für jede Klasse ein Issue mit dem Klassennamen
+   erstellen. Tragen Sie sich als *Assignee* ein.
 
-### Unittests schreiben
+   | Person | Klassen |
+   | --- | --- |
+   | 1 | `Grade` und `Student` |
+   | 2 | `Subject` |
+   | 3 | `ClassReport` |
+   | 4 | `SchoolClass` |
 
-1. Wählen Sie eine Klasse (Konstruktor) oder Funktion, die noch niemand
-   bearbeitet.
-2. Erstellen Sie ein Issue «Unittests *Funktionsname*» und tragen Sie sich als
-   verantwortlich ein.
-3. Schreiben Sie die Unittests. Benötigt die Funktion ein Objekt einer anderen
-   Klasse, verwenden Sie einen Mock.
-4. Commit mit `resolves #n` in der Message, **Pull**, dann **Push**.
-5. Erstellen Sie ein Issue mit dem Namen der Funktion, z. B. «add_student».
+4. Entwickeln Sie Ihre Klasse im Zyklus **Red → Green → Refactor**. Beginnen
+   Sie mit dem Test für den Konstruktor, danach folgen die Methoden einzeln.
 
-### Funktion realisieren
+   | Schritt | Was Sie tun | Commit-Message |
+   | --- | --- | --- |
+   | Red | einen Test schreiben, ausführen: rot | `red: test add_grade` |
+   | Green | Methode programmieren, bis alle Tests grün sind | `green: add_grade` |
+   | Refactor | aufräumen, bis pylint keine Meldungen mehr hat | `refactor: ...` |
 
-1. Wählen Sie ein offenes Issue und tragen Sie sich als verantwortlich ein.
-2. **Pull**, Funktion realisieren und testen.
-3. Commit mit `resolves #n` in der Message, **Pull**, dann **Push**.
-
-Sind die Unittests unvollständig oder fehlerhaft, besprechen Sie das mit der
-Person, die sie geschrieben hat.
+5. Vor jedem Push die Änderungen der anderen holen: **Pull**, dann **Push**.
+6. Ist Ihre Klasse fertig, schliessen Sie das Issue mit einem Commit, dessen
+   Message `closes #n` enthält.
+7. Sind alle Klassen fertig, ersetzen Sie in `main.py` die Aufrufe `print_...`
+   durch `print(...show_...())` und führen Sie das Programm aus.
 
 ## Hinweise
 
-- `Grade` wird als `@dataclass` realisiert.
-- Der Unittest für den Konstruktor einer Klasse wird immer zuerst geschrieben.
+- `Grade` wird als `@dataclass` realisiert. Eine Note liegt zwischen 1.0 und 6.0.
+- Eine Klasse hat höchstens 20 Lernende, ein Fach höchstens 4 Noten. Wird die
+  Grenze überschritten, löst die Methode einen `IndexError` aus.
+- Die Methoden `show_...` liefern einen String zurück und geben nichts mit
+  `print` aus.
+- Benötigt eine Methode ein Objekt einer anderen Klasse, verwenden Sie im Test
+  eine Mock-Klasse. Ihre Tests dürfen nicht davon abhängen, ob die Klassen der
+  anderen schon fertig sind.
 
 ## Lokal testen
 
@@ -65,5 +73,10 @@ python _run_pylint.py
 | Linting der Klassen und von `main.py` | 5 |
 | **Total automatisch** | **5** |
 
-`unittests.json` ist leer: Die Unittests und die Arbeit mit den Issues zählen
-nicht automatisch.
+`unittests.json` ist leer: Die Tests (Konstruktor, Normalfälle, Grenzwerte,
+Fehlerfälle, Mocks) und die Commits (Red, Green, Refactor nachvollziehbar)
+werden von Hand bewertet.
+
+## Abgabe
+
+Die Abgabe erfolgt durch den Push ins gemeinsame GitHub-Repository.
