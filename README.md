@@ -18,19 +18,23 @@ Die Klasse `StudentReport` aus dem Klassendiagramm heisst in diesem Repository
 
 ## Vorgehen
 
-1. Aufgabe annehmen und einer offenen Gruppe beitreten oder eine neue Gruppe
-   eröffnen. Neue Gruppen beginnen **zwingend** mit dem Klassennamen, z. B.
-   `ia24a-gruppenname`.
+1. Gruppe bilden (Classroom 50, höchstens 4 Personen):
+   - Eine Person öffnet den Link zur Aufgabe, klickt auf **Create group**
+     (der Gruppenname ist freiwillig) und fügt die anderen unter
+     **Manage my group** mit ihrem GitHub-Username hinzu (**Add**).
+   - Die anderen öffnen den Link danach erneut. Alternativ: bei der Gruppe
+     **Ask to join**, auf GitHub **Request to join**, nach der Bestätigung auf
+     der Accept-Seite **Check again**.
 2. Das gemeinsame Repository klonen.
-3. Klassen verteilen und für jede Klasse ein Issue mit dem Klassennamen
-   erstellen. Tragen Sie sich als *Assignee* ein.
+3. Klassen verteilen. **Jede Person** erstellt **ein** Issue für ihren Teil
+   (Titel siehe Tabelle) und trägt sich selbst als *Assignee* ein.
 
-   | Person | Klassen |
-   | --- | --- |
-   | 1 | `Grade` und `Student` |
-   | 2 | `Subject` |
-   | 3 | `ClassReport` |
-   | 4 | `SchoolClass` |
+   | Person | Klassen | Titel des Issues |
+   | --- | --- | --- |
+   | 1 | `Grade` und `Student` | Grade und Student |
+   | 2 | `Subject` | Subject |
+   | 3 | `ClassReport` | ClassReport |
+   | 4 | `SchoolClass` | SchoolClass |
 
 4. Entwickeln Sie Ihre Klasse im Zyklus **Red → Green → Refactor**. Beginnen
    Sie mit dem Test für den Konstruktor, danach folgen die Methoden einzeln.
@@ -42,7 +46,7 @@ Die Klasse `StudentReport` aus dem Klassendiagramm heisst in diesem Repository
    | Refactor | aufräumen, bis pylint keine Meldungen mehr hat | `refactor: ...` |
 
 5. Vor jedem Push die Änderungen der anderen holen: **Pull**, dann **Push**.
-6. Ist Ihre Klasse fertig, schliessen Sie das Issue mit einem Commit, dessen
+6. Ist Ihr Teil fertig, schliessen Sie Ihr Issue mit einem Commit, dessen
    Message `closes #n` enthält.
 7. Sind alle Klassen fertig, ersetzen Sie in `main.py` die Aufrufe `print_...`
    durch `print(...show_...())` und führen Sie das Programm aus.
